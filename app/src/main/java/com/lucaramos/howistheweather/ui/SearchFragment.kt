@@ -18,8 +18,8 @@ class SearchFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val searchContainer = inflater.inflate(R.layout.fragment_search, container, false)
-//        val textView = searchContainer.findViewById<TextView>(R.id.text_search)
-//        textView.text = getString(R.string.title_search)
+        val textView = searchContainer.findViewById<TextView>(R.id.et_search)
+        textView.text = getString(R.string.title_search)
          return searchContainer
     }
 

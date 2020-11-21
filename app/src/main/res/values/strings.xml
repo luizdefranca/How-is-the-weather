@@ -6,6 +6,14 @@
     <string name="title_search">Search</string>
     <string name="title_favorites">Favorites</string>
     <string name="title_settings">Settings</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_temperature_unit">Temperature</string>
+    <string name="rb_celsius">ºC</string>
+    <string name="rb_fahrenheit">ºF</string>
+    <string name="rb_english">English</string>
+    <string name="rb_portuguese">Portuguese</string>
+    <string name="title_description_language">Description Language</string>
+    <string name="bt_save">Save</string>
 </resources>

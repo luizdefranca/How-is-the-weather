@@ -19,8 +19,7 @@ class SettingsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val settingsContainer = inflater.inflate(R.layout.fragment_settings, container, false)
-        val textView = settingsContainer.findViewById<TextView>(R.id.text_settings)
-        textView.text = getString(R.string.title_settings)
-        return return settingsContainer
+
+        return settingsContainer
     }
 }
