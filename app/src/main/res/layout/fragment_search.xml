@@ -25,17 +25,18 @@
             android:layout_weight="9"
             android:ems="15"
             android:inputType="text"
-            android:text="Name"
+            android:text=""
+            android:hint="@string/hint_add_the_city_name"
+            android:layout_marginRight="8dp"
+            android:textSize="15sp" />
 
-            android:textSize="10sp" />
+        <Button
+            android:id="@+id/btn_search"
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            style="@android:style/Widget.ImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_weight="1"
+            android:text="@string/title_search_button"
             android:scaleType="centerCrop"
             android:src="@android:drawable/ic_menu_search" />
     </LinearLayout>

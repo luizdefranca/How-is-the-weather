@@ -16,4 +16,8 @@
     <string name="rb_portuguese">Portuguese</string>
     <string name="title_description_language">Description Language</string>
     <string name="bt_save">Save</string>
+    <string name="title_search_button">Search</string>
+    <string name="hint_add_the_city_name">Add the city name</string>
+    <string name="message_toast_offline">There are no internet connection</string>
+    <string name="message_toast_online">There are internet connection</string>
 </resources>
