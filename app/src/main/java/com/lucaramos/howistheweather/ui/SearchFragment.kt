@@ -1,11 +1,14 @@
 package com.lucaramos.howistheweather.ui
 
+import android.R.attr.data
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
+import android.security.NetworkSecurityPolicy
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,17 +19,15 @@ import com.lucaramos.howistheweather.R
 import com.lucaramos.howistheweather.manager.ApiManager
 import com.lucaramos.howistheweather.model.City
 import kotlinx.android.synthetic.main.fragment_search.*
-
-import okhttp3.Request
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.net.URL
 
+
 class SearchFragment : Fragment(), View.OnClickListener  {
 
-    private val API_KEY  = "dfd1a75a5e349387b02c6505d726a5c7"
+    private val API_KEY  = "f203e8ac18f8a301e358f13f7576bea1"
     private val ICON_ADDRESS = "http://openweathermap.org/img/w/04n.png"
     private val API_URL = "http://api.openweathermap.org/data/2.5/weather"
 
@@ -44,6 +45,7 @@ class SearchFragment : Fragment(), View.OnClickListener  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btn_search.setOnClickListener(this)
+
     }
 
     @SuppressLint("WrongConstant")
@@ -82,7 +84,8 @@ class SearchFragment : Fragment(), View.OnClickListener  {
                 val call = service.getCityWeather(city, API_KEY)
                 call.enqueue(object : Callback<City> {
                     override fun onFailure(call: Call<City>, t: Throwable) {
-                        Log.d("LCFR","Error Message: ${t.localizedMessage}")
+                        Log.d("LCFR","Error Message - onFailure: ${t.localizedMessage}")
+
                     }
 
                     override fun onResponse(call: Call<City>, response: Response<City>) {
@@ -92,13 +95,11 @@ class SearchFragment : Fragment(), View.OnClickListener  {
                                 Log.d("LCFR","The city is $cityRequested?.id")
                             }
                             false -> {
-                                Log.d("LCFR", "Response is not successu: ${response.errorBody()?.string()}")
+                                Log.d("LCFR", "Response is not successu: ${response.message()}")
                             }
                         }
                     }
-
                 } )
-
             }
             false -> Toast.makeText(v?.context, getString(R.string.message_toast_offline), Toast.LENGTH_LONG).show()
         }
@@ -107,9 +108,6 @@ class SearchFragment : Fragment(), View.OnClickListener  {
     fun teste(){
         val base = URL("http://api.openweathermap.org/data/2.5/weather")
         val url: URL = URL( base, "text")
-        url.let {
-
-        }
         Log.d("LCFR","${url.toString()}" )
     }
 }
