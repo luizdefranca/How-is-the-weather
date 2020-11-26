@@ -1,14 +1,11 @@
 package com.lucaramos.howistheweather.ui
 
-import android.R.attr.data
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.ApplicationInfo
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
-import android.security.NetworkSecurityPolicy
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +15,7 @@ import androidx.fragment.app.Fragment
 import com.lucaramos.howistheweather.R
 import com.lucaramos.howistheweather.manager.ApiManager
 import com.lucaramos.howistheweather.model.City
+import com.lucaramos.howistheweather.model.Root
 import kotlinx.android.synthetic.main.fragment_search.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,7 +43,7 @@ class SearchFragment : Fragment(), View.OnClickListener  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btn_search.setOnClickListener(this)
-
+//        rv_search.adapter = MyAdapter(mutableListOf())
     }
 
     @SuppressLint("WrongConstant")
@@ -73,6 +71,7 @@ class SearchFragment : Fragment(), View.OnClickListener  {
 
         when(view?.context?.let { isConnectivityAvailable(it) }){
             true -> {
+                pb_search.visibility = View.VISIBLE
                 Toast.makeText(
                     v?.context,
                     getString(R.string.message_toast_online),
@@ -81,23 +80,34 @@ class SearchFragment : Fragment(), View.OnClickListener  {
 
                 val city = et_search.text.toString()
                 val service = ApiManager().apiService()
-                val call = service.getCityWeather(city, API_KEY)
-                call.enqueue(object : Callback<City> {
-                    override fun onFailure(call: Call<City>, t: Throwable) {
+                val call = service.findTemperature(city, API_KEY)
+                call.enqueue(object : Callback<Root> {
+                    override fun onFailure(call: Call<Root>, t: Throwable) {
                         Log.d("LCFR","Error Message - onFailure: ${t.localizedMessage}")
-
+                        pb_search.visibility = View.GONE
                     }
 
-                    override fun onResponse(call: Call<City>, response: Response<City>) {
+                    override fun onResponse(call: Call<Root>, response: Response<Root>) {
                         when(response.isSuccessful){
                             true -> {
-                                val cityRequested = response.body()
-                                Log.d("LCFR","The city is $cityRequested?.id")
+                                val root = response.body()
+                                Log.d("LCFR","The city is ${root?.list.toString() ?: "null"}")
+
+                                val cities = mutableListOf<City>()
+                                root?.list?.forEach{
+                                    cities.add(it)
+                                }
+                                /*
+                                (rv_search.adapter as MyAdapter).addItems(cities)
+                                rv_search.layoutManager = LinearLayoutManager(context)
+                                rv_search.addItemDecoration(MyAdapter.MyItemDecoration(30))
+                                 */
                             }
                             false -> {
                                 Log.d("LCFR", "Response is not successu: ${response.message()}")
                             }
                         }
+                        pb_search.visibility = View.GONE
                     }
                 } )
             }
