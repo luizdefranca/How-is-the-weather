@@ -21,4 +21,7 @@
     <string name="message_toast_offline">There are no internet connection</string>
     <string name="message_toast_online">There are internet connection</string>
     <string name="fab_description">Favorite</string>
+    <string name="iv_weather_image_description">Weather Image</string>
+    <string name="tv_city">City</string>
+    <string name="tv_id">Id</string>
 </resources>

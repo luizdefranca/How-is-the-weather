@@ -6,7 +6,7 @@ data class City(val id: Long,
                 val name: String,
                 val main : Main,
                 val sys: Sys,
-                val weather: ArrayList<Weather>,
+                val weather: List<Weather>,
                 val wind : Wind)
 
 
