@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>baseURL</key>
-	<string>http://api.openweathermap.org/data/2.5/weather</string>
+	<string>http://api.openweathermap.org/data/2.5/find</string>
 	<key>followRedirect</key>
 	<true/>
 	<key>handleJSONPCallbacks</key>
@@ -47,9 +47,17 @@
 			<key>inUse</key>
 			<true/>
 			<key>parameter</key>
+			<string>units</string>
+			<key>value</key>
+			<string>metric</string>
+		</dict>
+		<dict>
+			<key>inUse</key>
+			<true/>
+			<key>parameter</key>
 			<string>q</string>
 			<key>value</key>
-			<string>gramado</string>
+			<string>Buenos Aires</string>
 		</dict>
 	</array>
 	<key>parametersType</key>

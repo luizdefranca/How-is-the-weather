@@ -13,6 +13,6 @@ interface CityDatabaseDao {
     fun save(cityDatabase: CityDatabase): Long
 
     @Query("SELECT * FROM citydatabase ORDER BY cityName ASC")
-    fun getAllCityDatabase(): List<CityDatabase>
+    fun getAllCityDatabase(): MutableList<CityDatabase>
 
 }

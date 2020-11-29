@@ -27,6 +27,7 @@ class SettingsFragment : Fragment() {
 
     private val  TEMPERATURE_UNIT = "temperature_unit"
     private val  LANGUAGE = "description_language"
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
