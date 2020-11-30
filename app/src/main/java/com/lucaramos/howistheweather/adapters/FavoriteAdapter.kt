@@ -26,8 +26,7 @@ class FavoriteAdapter(val list: MutableList<CityDatabase>?) : RecyclerView.Adapt
     }
 
     override fun getItemCount(): Int {
-//        return list?.size ?: 0
-        return 3
+        return list?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
@@ -53,7 +52,7 @@ class FavoriteAdapter(val list: MutableList<CityDatabase>?) : RecyclerView.Adapt
 
         val tvCityName = itemView.tv_city
         val tvId = itemView.tv_id
-        
+
         fun bindView(city: CityDatabase){
             tvCityName.text = city.cityName
             tvId.text = city.id.toString()
